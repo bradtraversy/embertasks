@@ -1,0 +1,28 @@
+.tasklist li{
+	list-style: none;
+	padding:10px 0 5px 0;
+	border-bottom:#ccc dashed 1px;
+	float:left;
+	width:300px;
+	margin-right:30px;
+}
+
+.tasklist button{
+	float:right;
+}
+
+.tasklist .note{
+	width:75%;
+}
+
+.tasklist .done{
+	text-decoration: line-through;
+}
+
+.task-count{
+	padding:5px;
+	background:#f4f4f4;
+	display:block;
+	width:100%;
+	text-align: center;
+}

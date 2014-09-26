@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskList</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+  </head>
+
+  <body>
+     <script type="text/x-handlebars" data-template-name="tasks">
+      <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          
+        </ul>
+        <h3 class="text-muted">TaskList</h3>
+      </div>
+
+      <div class="row marketing">
+       <form {{action createTask on='submit'}}>
+      <p>
+        {{input type="text" id="new-title" class="form-control" placeholder="Add a new task..." 
+              value=newTitle}}
+      </p>
+      <p>
+         {{textarea id="new-note" class="form-control" placeholder="Add a note..." 
+              value=newNote}}
+      </p>
+      <p>
+              <button class="btn btn-primary">Add Task</button>
+      </p>
+      </form>
+      <br>
+      <p>
+        <span class="task-count">
+        You Have <strong>{{remaining}}</strong> {{inflection}} Left
+        </span>
+      </p>
+        <ul class="tasklist">
+          {{#each itemController="task"}}
+            <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+              {{#if isEditing}}
+               {{view Ember.TextField valueBinding="title"}}
+              {{else}}
+                {{input type="checkbox" checked=isDone class="toggle"}}
+              <label {{action "editTask" on="doubleClick"}} {{bind-attr class="isDone:done"}}>{{title}}</label> 
+            {{/if}}
+            <button {{action "removeTask"}} class="destroy btn btn-default btn-xs">Delete</button>
+            <br>
+            {{#if isEditing}}
+               {{view Ember.TextArea valueBinding="note"}}
+               <button class="btn btn-default btn-xs" {{action 'acceptChanges' this}}>Done</button>
+              {{else}}
+            <div {{action "editTask" on="doubleClick"}} class="note">{{note}}</div>
+             {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+        
+      </div>
+
+      <div class="footer">
+        <p class="text-center">Copyright &copy; TaskList Demo App 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+     </script>
+    
+	<script src="js/libs/jquery.js"></script>
+	<script src="js/libs/bootstrap.min.js"></script>
+	<script src="js/libs/handlebars-1.0.0.js"></script>
+	<script src="js/libs/ember.js"></script>
+	<script src="js/libs/ember-data.js"></script>
+  <script src="js/libs/localstorage_adapter.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/models/task.js"></script>
+  <script src="js/controllers/tasks_controller.js"></script>
+  <script src="js/controllers/task_controller.js"></script>
+ </body>
+</html>
