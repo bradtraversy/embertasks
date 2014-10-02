@@ -6,6 +6,8 @@
 ## Version ##
 **0.0.3**
 
+## Demo ##
+To view a live demo, please go to - [http://codedemos.com/ember_tasks](http://www.codedemos.com/ember_tasks)
 
 ##Installation##
 Simply upload the files to your web server and open index.html
